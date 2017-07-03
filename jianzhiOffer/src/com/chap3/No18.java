@@ -5,6 +5,7 @@ package com.chap3;
  * 查找子树
  */
 public class No18 {
+                                              //树           子树
     public static boolean HasSubtree(TreeNode root1,TreeNode root2) {
         boolean result=false;
         if(root1!=null && root2!=null) {
