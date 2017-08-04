@@ -7,25 +7,27 @@ package com.chap3;
  * http://blog.csdn.net/guyuealian/article/details/51119499
  */
 public class No16 {
-
     //遍历反转法
-    public  static  Node reverseList(Node head){
-        if(head==null)
-            return head;
-        Node prev=head;
-        Node cur=head.next;
-        Node tmp=null;
-        while(cur!=null){//当前结点为null，说明位于尾结点
-            tmp=cur.next;
-            cur.next=prev;//反转指针域的指向
-            // 指针往后移动
-            prev=cur;
-            cur=tmp;
+    public  static  Node reverseListDemo(Node head){
+        Node reversedNode=null;
+        Node currentNode=head;
+        Node prevNode=null;
+
+        while(currentNode!=null){
+            Node nextNode=currentNode.next;
+
+            if(nextNode==null){
+                reversedNode=currentNode;
+            }
+
+            currentNode.next=prevNode;
+            prevNode=currentNode;
+            currentNode=nextNode;
         }
-        // 最后将原链表的头节点的指针域置为null，还回新链表的头结点，即原链表的尾结点
-        head.next=null;
-        return prev;
+
+        return reversedNode;
     }
+
     //递归法
     public static Node reverseList2(Node head){
         // head看作是前一结点，head.getNext()是当前结点，reHead是反转后新链表的头结点
@@ -57,7 +59,7 @@ public class No16 {
         n2.setNext(n3);
 
         show(head);
-        Node reverseHead = reverseList(head);
+        Node reverseHead = reverseListDemo(head);
         show(reverseHead);
     }
 }

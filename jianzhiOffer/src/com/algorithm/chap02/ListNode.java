@@ -33,6 +33,7 @@ public class ListNode {
         }
 
         else{
+            size--;
             int v=head.value;
             head=head.next;
             return  v;
@@ -53,8 +54,32 @@ public class ListNode {
             }
             int v=temp.next.value;
             temp.next=temp.next.next;
+            size--;
             return v;
         }
+    }
+    //在index之后插入node
+    public void insert(int index,int value){
+        if(index<0 || index>size-1){
+            System.out.println("索引越界");
+            return;
+        }
+        if (index==1){
+            addNode(value);
+        }
+        Node temp=head;
+        for (int i = 0; i < index; i++) {
+            temp=temp.next;
+        }
+        Node nextTemp=temp.next;
+
+        Node toInsert=new Node();
+        toInsert.value=value;
+
+        temp.next=toInsert;
+        toInsert.next=nextTemp;
+
+        size++;
     }
 
     public void showList(){
@@ -77,6 +102,8 @@ public class ListNode {
         for (int i = 0; i < 10; i++) {
             ls.addNode(i);
         }
+        ls.delete(9);
+        ls.insert(2,100000);
         ls.showList();
     }
 }
